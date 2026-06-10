@@ -37,19 +37,8 @@ import Footer from "./components/Footer";
 import MycoAssistant from "./components/MycoAssistant";
 import GoogleDriveVault from "./components/GoogleDriveVault";
 import { Product, Service, ContactMessage, SiteContent, DatabaseState, ProductCategory, ProductStatus } from "./types";
-import { useLanguage } from "./i18n/LanguageContext";
 
 export default function App() {
-  const { t, language } = useLanguage();
-  const productCategories: string[] = ["All", "Grain Spawn", "Bio-materials", "Starting Cultures", "Consulting & Setup"];
-  const localizedCategory = (category: string) => t(`category.${category}`, category);
-  const localizedStatus = (status: string) => t(`status.${status}`, status);
-  const localizedProductName = (product: Product) => t(`product.${product.id}.name`, product.name);
-  const localizedProductDescription = (product: Product) => t(`product.${product.id}.description`, product.description);
-  const localizedServiceName = (service: Service) => t(`service.${service.id}.name`, service.name);
-  const localizedServiceDescription = (service: Service) => t(`service.${service.id}.description`, service.description);
-  const localizedServiceDuration = (service: Service) => t(`service.${service.id}.duration`, service.duration || t("products.customScope"));
-
   // Page selection: 'home', 'about', 'products', 'contact', 'admin'
   const [activePage, setActivePage] = useState<string>("home");
   const [selectedQrProduct, setSelectedQrProduct] = useState<Product | null>(null);
@@ -897,15 +886,15 @@ export default function App() {
               <div className="max-w-4xl mx-auto text-center relative z-10 space-y-6">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-100/80 border border-emerald-200 text-emerald-800 rounded-full text-[11px] font-mono font-bold tracking-widest uppercase">
                   <Sparkles className="w-3 h-3 text-emerald-700 animate-spin-slow" />
-                  {t("home.hero.badge")}
+                  {siteContent.hero.badge}
                 </span>
 
                 <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-stone-900 leading-[1.1]">
-                  {t("home.hero.title")}
+                  {siteContent.hero.title}
                 </h1>
 
                 <p className="text-stone-600 text-lg sm:text-xl font-light leading-relaxed max-w-2xl mx-auto">
-                  {t("home.hero.subtitle")}
+                  {siteContent.hero.subtitle}
                 </p>
 
                 <div className="pt-4 flex flex-col sm:flex-row justify-center gap-4">
@@ -913,13 +902,13 @@ export default function App() {
                     onClick={() => setActivePage("products")}
                     className="px-6 py-3 bg-stone-900 hover:bg-stone-800 text-white rounded-xl text-sm font-semibold tracking-wide transition-all shadow-md hover:translate-y-[-1px] cursor-pointer"
                   >
-                    {t("home.hero.primaryCta")}
+                    {siteContent.hero.primaryCta}
                   </button>
                   <button
                     onClick={() => setActivePage("contact")}
                     className="px-6 py-3 bg-white hover:bg-stone-50 text-stone-800 border border-stone-200 rounded-xl text-sm font-semibold tracking-wide transition-all cursor-pointer"
                   >
-                    {t("home.hero.secondaryCta")}
+                    {siteContent.hero.secondaryCta}
                   </button>
                 </div>
               </div>
@@ -930,19 +919,19 @@ export default function App() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 bg-white border border-stone-200/80 rounded-2xl shadow-xs text-center">
                 <div>
                   <div className="text-3xl font-display font-bold text-emerald-900">100%</div>
-                  <div className="text-xs text-stone-500 uppercase tracking-widest mt-1">{t("home.stats.cleanrooms")}</div>
+                  <div className="text-xs text-stone-500 uppercase tracking-widest mt-1">Sterile Cleanrooms</div>
                 </div>
                 <div className="border-l border-stone-200">
                   <div className="text-3xl font-display font-bold text-emerald-900">0%</div>
-                  <div className="text-xs text-stone-500 uppercase tracking-widest mt-1">{t("home.stats.chemicals")}</div>
+                  <div className="text-xs text-stone-500 uppercase tracking-widest mt-1">Plastic/Chemicals</div>
                 </div>
                 <div className="border-l border-stone-200">
                   <div className="text-3xl font-display font-bold text-emerald-900">45 Days</div>
-                  <div className="text-xs text-stone-500 uppercase tracking-widest mt-1">{t("home.stats.compost")}</div>
+                  <div className="text-xs text-stone-500 uppercase tracking-widest mt-1">Bio-Pack Compost</div>
                 </div>
                 <div className="border-l border-stone-200">
                   <div className="text-3xl font-display font-bold text-emerald-900">15+ TND</div>
-                  <div className="text-xs text-stone-500 uppercase tracking-widest mt-1">{t("home.stats.price")}</div>
+                  <div className="text-xs text-stone-500 uppercase tracking-widest mt-1">Accessible Price/kg</div>
                 </div>
               </div>
             </section>
@@ -951,10 +940,10 @@ export default function App() {
             <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
               <div className="text-center space-y-2 mb-12">
                 <h2 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-stone-900">
-                  {t("home.features.title")}
+                  Pioneering Circular Innovation
                 </h2>
                 <p className="text-stone-500 max-w-xl mx-auto text-sm font-light">
-                  {t("home.features.subtitle")}
+                  Our lab utilizes biological systems to cycle materials, providing organic solutions tailored for Tunisia.
                 </p>
               </div>
 
@@ -968,10 +957,10 @@ export default function App() {
                       {renderFeatureIcon(feat.icon)}
                     </div>
                     <h3 className="font-display font-semibold text-lg text-stone-900 mb-2">
-                      {t(`features.${feat.id}.title`, feat.title)}
+                      {feat.title}
                     </h3>
                     <p className="text-sm text-stone-500 leading-relaxed font-light">
-                      {t(`features.${feat.id}.description`, feat.description)}
+                      {feat.description}
                     </p>
                   </div>
                 ))}
@@ -987,23 +976,23 @@ export default function App() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                   <div className="space-y-4">
                     <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-400 font-bold block">
-                      {t("home.process.label")}
+                      The Biotechnology Process
                     </span>
                     <h2 className="font-display text-3xl font-bold text-white tracking-tight lead-[1.2]">
-                      {t("home.process.title")}
+                      How We Transform Tunisian Grain into Highly Viable Spawn
                     </h2>
                     <p className="text-stone-300 leading-relaxed text-sm font-light">
-                      {t("home.process.p1")}
+                      Mycelium on grains (mushroom spawn) is cellular starter seed. In our Tunis cleanrooms, we propagate native mother clones. When transferred onto clean grains under autoclaved setups, the white fungal network hyper-colonizes every seed, absorbing cellular starches. 
                     </p>
                     <p className="text-stone-300 leading-relaxed text-sm font-light">
-                      {t("home.process.p2")}
+                      This provides growers in Tunisia with an optimized delivery device. When mixed into wheat straw or agricultural olive pulp, each grain acts as a biological ignition node, triggering accelerated growth cycles.
                     </p>
                     <div className="pt-2">
                       <button
                         onClick={() => setActivePage("about")}
                         className="inline-flex items-center gap-1 text-xs text-white bg-emerald-800 hover:bg-emerald-700 px-4.5 py-2 rounded-lg font-bold tracking-wide transition-all cursor-pointer"
                       >
-                        {t("home.process.cta")}
+                        Read Lab Protocols
                         <ChevronRight className="w-3.5 h-3.5" />
                       </button>
                     </div>
@@ -1011,28 +1000,28 @@ export default function App() {
 
                   <div className="bg-stone-900/60 p-6 rounded-2xl border border-stone-800 space-y-4">
                     <h3 className="text-xs font-semibold text-white uppercase tracking-wider font-mono">
-                      {t("home.process.phasesTitle")}
+                      Dynamic Growth Phases:
                     </h3>
                     <div className="space-y-3">
                       <div className="flex gap-3">
                         <div className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-mono">1</div>
                         <div>
-                          <h4 className="text-sm font-semibold text-white">{t("home.process.step1.title")}</h4>
-                          <p className="text-xs text-stone-400">{t("home.process.step1.desc")}</p>
+                          <h4 className="text-sm font-semibold text-white">Clone Separation</h4>
+                          <p className="text-xs text-stone-400">Isolating robust strains on MEA Petri dishes under HEPA hoods.</p>
                         </div>
                       </div>
                       <div className="flex gap-3 border-t border-stone-800 pt-2">
                         <div className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-mono">2</div>
                         <div>
-                          <h4 className="text-sm font-semibold text-white">{t("home.process.step2.title")}</h4>
-                          <p className="text-xs text-stone-400">{t("home.process.step2.desc")}</p>
+                          <h4 className="text-sm font-semibold text-white">Grain Activation & Sterilization</h4>
+                          <p className="text-xs text-stone-400">Washing premium local barley and pressure heating for 2.5 hours.</p>
                         </div>
                       </div>
                       <div className="flex gap-3 border-t border-stone-800 pt-2">
                         <div className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-mono">3</div>
                         <div>
-                          <h4 className="text-sm font-semibold text-white">{t("home.process.step3.title")}</h4>
-                          <p className="text-xs text-stone-400">{t("home.process.step3.desc")}</p>
+                          <h4 className="text-sm font-semibold text-white">Aseptic Inoculation</h4>
+                          <p className="text-xs text-stone-400">Inoculating mycelial liquid into grain flasks with constant HEPA air.</p>
                         </div>
                       </div>
                     </div>
@@ -1057,12 +1046,12 @@ export default function App() {
                 }}
                 className="inline-flex items-center gap-1.5 text-xs text-stone-600 hover:text-stone-900 font-medium cursor-pointer"
               >
-                {t("qr.backHome")}
+                ← Back to Home
               </button>
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                 <span className="text-[10px] font-mono font-bold tracking-widest text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full uppercase">
-                  {t("qr.traceabilityBadge")}
+                  BATCH SECURE AUTHENTICATED
                 </span>
               </div>
             </div>
@@ -1076,13 +1065,13 @@ export default function App() {
                   <div className="aspect-square bg-stone-100 rounded-xl overflow-hidden relative">
                     <img
                       src={qrEditMode ? (qrForm.image || "") : selectedQrProduct.image}
-                      alt={localizedProductName(selectedQrProduct)}
+                      alt={selectedQrProduct.name}
                       className="w-full h-full object-cover"
                       referrerPolicy="no-referrer"
                     />
                     <div className="absolute top-3 right-3">
                       <span className="px-2.5 py-1 text-[9px] font-bold tracking-wider font-mono bg-stone-900/90 text-stone-50 rounded-md uppercase">
-                        {localizedCategory(selectedQrProduct.category)}
+                        {selectedQrProduct.category}
                       </span>
                     </div>
                   </div>
@@ -1090,13 +1079,13 @@ export default function App() {
                   {/* Pricing and status indicator */}
                   <div className="flex justify-between items-center bg-white p-3 rounded-lg border border-stone-200">
                     <div>
-                      <span className="text-[10px] text-stone-400 font-mono block">{t("qr.price")}</span>
+                      <span className="text-[10px] text-stone-400 font-mono block">REFERENCE VALUE</span>
                       <span className="text-sm font-bold text-stone-900">{selectedQrProduct.price}</span>
                     </div>
                     <div>
-                      <span className="text-[10px] text-stone-400 font-mono block text-right">{t("qr.status")}</span>
+                      <span className="text-[10px] text-stone-400 font-mono block text-right">BATCH STATUS</span>
                       <span className={`text-xs font-bold ${selectedQrProduct.status === "Available" ? "text-emerald-700" : "text-rose-700"}`}>
-                        ● {localizedStatus(selectedQrProduct.status)}
+                        ● {selectedQrProduct.status}
                       </span>
                     </div>
                   </div>
@@ -1118,7 +1107,7 @@ export default function App() {
                 {/* Product Name headings */}
                 <div className="space-y-1">
                   <h1 className="font-display text-3xl font-bold tracking-tight text-stone-900 leading-tight">
-                    {localizedProductName(selectedQrProduct)}
+                    {selectedQrProduct.name}
                   </h1>
                   {selectedQrProduct.scientificName && (
                     <p className="text-xs text-stone-500 font-medium italic">
@@ -1192,7 +1181,7 @@ export default function App() {
                 {/* Description & analytical copy */}
                 <div className="space-y-2 bg-stone-50/50 p-4 rounded-xl border border-stone-200/60">
                   <h3 className="text-xs font-bold text-stone-800 uppercase font-mono tracking-wider">
-                    {t("products.specifications")}
+                    Biological Characteristics / Instructions:
                   </h3>
                   {qrEditMode ? (
                     <textarea
@@ -1203,7 +1192,7 @@ export default function App() {
                     />
                   ) : (
                     <p className="text-stone-600 text-xs sm:text-sm font-light leading-relaxed whitespace-pre-wrap">
-                      {localizedProductDescription(selectedQrProduct) || "Inoculated grains ready to spawn substrates under micro-filtrated laboratory settings."}
+                      {selectedQrProduct.description || "Inoculated grains ready to spawn substrates under micro-filtrated laboratory settings."}
                     </p>
                   )}
                 </div>
@@ -1211,7 +1200,7 @@ export default function App() {
                 {/* specifications list if any */}
                 {selectedQrProduct.specifications && selectedQrProduct.specifications.length > 0 && (
                   <div className="space-y-1.5">
-                    <span className="text-[10px] font-mono tracking-wider uppercase font-bold text-stone-400">{t("qr.biologicalParameters")}</span>
+                    <span className="text-[10px] font-mono tracking-wider uppercase font-bold text-stone-400">Biological Parameters:</span>
                     <div className="flex flex-wrap gap-1.5">
                       {selectedQrProduct.specifications.map((spec, i) => (
                         <span key={i} className="text-[10px] bg-stone-100 text-stone-600 border border-stone-200 rounded-md px-2 py-0.5 font-mono">
@@ -1340,13 +1329,13 @@ export default function App() {
             {/* Intro Section */}
             <div className="max-w-3xl mx-auto text-center space-y-4">
               <span className="text-[10px] font-mono tracking-widest text-emerald-700 bg-emerald-100 px-2.5 py-1 rounded-full uppercase font-bold">
-                {t("about.badge")}
+                Our Biology Core
               </span>
               <h1 className="font-display text-4xl font-bold tracking-tight text-stone-900 leading-tight">
-                {t("about.title", siteContent.about.title)}
+                {siteContent.about.title}
               </h1>
               <p className="text-stone-500 text-lg leading-relaxed font-light">
-                {t("about.subtitle", siteContent.about.subtitle)}
+                {siteContent.about.subtitle}
               </p>
             </div>
 
@@ -1354,14 +1343,14 @@ export default function App() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="space-y-6">
                 <h2 className="font-display text-2xl font-bold text-stone-900">
-                  {t("about.storyHeading")}
+                  Upcycling Tunisian Co-Products
                 </h2>
                 <p className="text-stone-600 leading-relaxed font-light text-sm sm:text-base">
-                  {t("about.story", siteContent.about.story)}
+                  {siteContent.about.story}
                 </p>
                 <div className="p-4 bg-emerald-50 border-l-4 border-emerald-800 rounded-r-xl">
                   <p className="text-xs text-emerald-950 font-light italic leading-relaxed">
-                    {t("about.teamFocus", siteContent.about.teamFocus)}
+                    {siteContent.about.teamFocus}
                   </p>
                 </div>
               </div>
@@ -1370,21 +1359,21 @@ export default function App() {
               <div className="bg-stone-100 rounded-3xl p-8 border border-stone-200 relative overflow-hidden self-stretch flex flex-col justify-between">
                 <div className="space-y-4 relative z-10">
                   <div className="inline-flex px-2 py-0.5 bg-white border border-stone-200 text-stone-600 text-[10px] font-mono rounded-md">
-                    {t("about.labStandard")}
+                    Lab standard: EN 14644-1
                   </div>
-                  <h3 className="font-display font-bold text-xl text-stone-900">{t("about.hepaTitle")}</h3>
+                  <h3 className="font-display font-bold text-xl text-stone-900">HEPA sterile operations</h3>
                   <p className="text-xs text-stone-500 leading-relaxed font-light">
-                    {t("about.hepaText")}
+                    Mycelium is highly susceptible to competing molds (such as Trichoderma). To secure maximum fruiting vigor, we sterilize barley, wheat, and wood shavings using modern 121°C vertical autoclaving, inoculating only inside clean, laminar horizontal laminar flow hood chambers.
                   </p>
                 </div>
 
                 <div className="mt-8 border-t border-stone-200 pt-6 grid grid-cols-2 gap-4">
                   <div>
-                    <span className="text-xs font-mono text-stone-400 block">{t("about.autoclaveDuration")}</span>
+                    <span className="text-xs font-mono text-stone-400 block">Autoclave duration</span>
                     <span className="text-base font-semibold text-stone-800">150 Minutes</span>
                   </div>
                   <div>
-                    <span className="text-xs font-mono text-stone-400 block">{t("about.airExchange")}</span>
+                    <span className="text-xs font-mono text-stone-400 block">Air Exchange Rate</span>
                     <span className="text-base font-semibold text-stone-800 font-mono">140 m³/hour</span>
                   </div>
                 </div>
@@ -1397,9 +1386,9 @@ export default function App() {
                 <span className="p-2.5 bg-emerald-100 text-emerald-800 rounded-xl inline-block">
                   <Sprout className="w-5 h-5" />
                 </span>
-                <h3 className="font-display font-bold text-xl text-stone-900">{t("about.missionTitle")}</h3>
+                <h3 className="font-display font-bold text-xl text-stone-900">Our Strategic Mission</h3>
                 <p className="text-sm text-stone-500 leading-relaxed font-light">
-                  {t("about.mission", siteContent.about.mission)}
+                  {siteContent.about.mission}
                 </p>
               </div>
 
@@ -1407,9 +1396,9 @@ export default function App() {
                 <span className="p-2.5 bg-emerald-100 text-emerald-800 rounded-xl inline-block">
                   <Globe className="w-5 h-5" />
                 </span>
-                <h3 className="font-display font-bold text-xl text-stone-900">{t("about.visionTitle")}</h3>
+                <h3 className="font-display font-bold text-xl text-stone-900">Our Future Vision</h3>
                 <p className="text-sm text-stone-500 leading-relaxed font-light">
-                  {t("about.vision", siteContent.about.vision)}
+                  {siteContent.about.vision}
                 </p>
               </div>
             </div>
@@ -1426,16 +1415,16 @@ export default function App() {
             {/* Header Section */}
             <div className="text-center max-w-2xl mx-auto space-y-3">
               <h1 className="font-display text-4xl font-bold tracking-tight text-stone-900 leading-tight">
-                {t("products.title")}
+                Our Biotech Catalog
               </h1>
               <p className="text-stone-500 text-sm font-light">
-                {t("products.subtitle")}
+                Premium-grade mushroom grain spawn inoculated on organic local grains, sustainable cellular bio-materials, and advisory consultings for Tunisian farming setup.
               </p>
             </div>
 
             {/* Category Filter Bar */}
             <div className="flex flex-wrap justify-center gap-2 border-b border-stone-200 pb-6">
-              {productCategories.map((cat) => (
+              {["All", "Grain Spawn", "Bio-materials", "Starting Cultures", "Consulting & Setup"].map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setCategoryFilter(cat)}
@@ -1445,14 +1434,14 @@ export default function App() {
                       : "bg-stone-100 hover:bg-stone-200 text-stone-700"
                   }`}
                 >
-                  {localizedCategory(cat)}
+                  {cat}
                 </button>
               ))}
             </div>
 
             {/* Dynamic Products Grid */}
             <div className="space-y-8">
-              <h2 className="font-display text-2xl font-bold text-stone-900">{t("products.sectionTitle")}</h2>
+              <h2 className="font-display text-2xl font-bold text-stone-900">Mycelial Spawn & Bio-materials</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {products
@@ -1468,7 +1457,7 @@ export default function App() {
                         <div className="h-48 bg-stone-100 relative overflow-hidden">
                           <img
                             src={product.image}
-                            alt={localizedProductName(product)}
+                            alt={product.name}
                             referrerPolicy="no-referrer"
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           />
@@ -1482,13 +1471,13 @@ export default function App() {
                                   : "bg-rose-50 border-rose-200 text-rose-800"
                               }`}
                             >
-                              {localizedStatus(product.status)}
+                              {product.status}
                             </span>
                           </div>
                           
                           <div className="absolute bottom-2 left-2 px-2 py-0.5 bg-stone-900/40 backdrop-blur-xs rounded-md">
                             <span className="text-[10px] text-white/90 font-mono tracking-widest block uppercase">
-                              {localizedCategory(product.category)}
+                              {product.category}
                             </span>
                           </div>
                         </div>
@@ -1501,10 +1490,10 @@ export default function App() {
                             </span>
                           )}
                           <h3 className="font-display font-semibold text-lg text-stone-900 group-hover:text-emerald-900 transition-colors">
-                            {localizedProductName(product)}
+                            {product.name}
                           </h3>
                           <p className="text-xs text-stone-500 leading-relaxed line-clamp-3 font-light">
-                            {localizedProductDescription(product)}
+                            {product.description}
                           </p>
                         </div>
                       </div>
@@ -1515,7 +1504,7 @@ export default function App() {
                           {product.price}
                         </span>
                         <span className="text-xs text-emerald-700 flex items-center gap-1 font-semibold">
-                          {t("products.viewDetails")}
+                          View details
                           <ArrowUpRight className="w-3.5 h-3.5" />
                         </span>
                       </div>
@@ -1528,8 +1517,8 @@ export default function App() {
             {(categoryFilter === "All" || categoryFilter === "Consulting & Setup") && (
               <div className="space-y-8 pt-6 border-t border-stone-200">
                 <div className="space-y-2">
-                  <h2 className="font-display text-2xl font-bold text-stone-900">{t("products.servicesTitle")}</h2>
-                  <p className="text-stone-500 text-sm font-light">{t("products.servicesSubtitle")}</p>
+                  <h2 className="font-display text-2xl font-bold text-stone-900">Advisory Setup & Engineering Services</h2>
+                  <p className="text-stone-500 text-sm font-light">We offer technical support for laboratory design, autoclave sizing, and ventilation layout schemes.</p>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -1541,7 +1530,7 @@ export default function App() {
                       <div className="w-full md:w-1/3 bg-stone-100 rounded-xl overflow-hidden self-stretch h-40 md:h-auto">
                         <img
                           src={serv.image}
-                          alt={localizedServiceName(serv)}
+                          alt={serv.name}
                           referrerPolicy="no-referrer"
                           className="w-full h-full object-cover"
                         />
@@ -1550,18 +1539,18 @@ export default function App() {
                       <div className="w-full md:w-2/3 flex flex-col justify-between space-y-4">
                         <div className="space-y-2">
                           <span className="px-2.5 py-1 bg-stone-100 border border-stone-200 text-stone-600 font-mono text-[10px] uppercase tracking-wider rounded-lg inline-block">
-                            {localizedServiceDuration(serv)}
+                            {serv.duration || "Custom Scope"}
                           </span>
                           <h3 className="font-display font-semibold text-lg text-stone-900">
-                            {localizedServiceName(serv)}
+                            {serv.name}
                           </h3>
                           <p className="text-xs text-stone-500 leading-relaxed font-light">
-                            {localizedServiceDescription(serv)}
+                            {serv.description}
                           </p>
                           
                           {/* Benefits list */}
                           <div className="space-y-1.5 pt-1">
-                            <span className="text-[10px] text-stone-400 uppercase tracking-widest font-mono block">{t("products.packageBenefits")}</span>
+                            <span className="text-[10px] text-stone-400 uppercase tracking-widest font-mono block">Package benefits:</span>
                             {serv.benefits.map((b, i) => (
                               <div key={i} className="flex items-center gap-1.5 text-xs text-stone-600">
                                 <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
@@ -1572,7 +1561,7 @@ export default function App() {
                         </div>
 
                         <div className="flex justify-between items-center pt-2 border-t border-stone-100">
-                          <span className="text-xs font-mono text-stone-400">{t("products.consultationPricing")}</span>
+                          <span className="text-xs font-mono text-stone-400">Consultation pricing:</span>
                           <span className="text-sm font-bold text-emerald-900 font-mono">{serv.price}</span>
                         </div>
                       </div>
@@ -1598,16 +1587,16 @@ export default function App() {
                   <div className="h-64 relative bg-stone-100">
                     <img
                       src={selectedProductDetails.image}
-                      alt={localizedProductName(selectedProductDetails)}
+                      alt={selectedProductDetails.name}
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute bottom-4 left-4 p-3 bg-stone-950/80 backdrop-blur-xs rounded-xl border border-stone-800 text-stone-100">
                       <span className="text-[9px] font-mono tracking-widest text-emerald-300 block uppercase">
-                        {localizedCategory(selectedProductDetails.category)}
+                        {selectedProductDetails.category}
                       </span>
                       <h3 className="font-display font-medium text-lg leading-tight">
-                        {localizedProductName(selectedProductDetails)}
+                        {selectedProductDetails.name}
                       </h3>
                     </div>
                   </div>
@@ -1615,10 +1604,10 @@ export default function App() {
                   <div className="p-6 space-y-6">
                     <div className="space-y-2">
                       <span className="text-xs font-mono text-emerald-800 italic block font-bold">
-                        {selectedProductDetails.scientificName || t("products.scientificStandard")}
+                        {selectedProductDetails.scientificName || "Scientific Standard Batch"}
                       </span>
                       <p className="text-sm leading-relaxed text-stone-600 font-light">
-                        {localizedProductDescription(selectedProductDetails)}
+                        {selectedProductDetails.description}
                       </p>
                     </div>
 
@@ -1626,7 +1615,7 @@ export default function App() {
                     {selectedProductDetails.specifications && selectedProductDetails.specifications.length > 0 && (
                       <div className="bg-stone-50 border border-stone-100 rounded-2xl p-4 space-y-3">
                         <span className="text-xs font-semibold text-stone-900 font-display block uppercase tracking-wider">
-                          {t("products.specifications")}
+                          Laboratory Batch Specifications:
                         </span>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           {selectedProductDetails.specifications.map((spec, i) => (
@@ -1641,7 +1630,7 @@ export default function App() {
 
                     <div className="pt-4 border-t border-stone-150 flex justify-between items-center">
                       <div>
-                        <span className="text-xs text-stone-400 block font-mono">{t("products.referencePricing")}</span>
+                        <span className="text-xs text-stone-400 block font-mono">Tunisian Reference Pricing:</span>
                         <span className="text-lg font-bold text-stone-900 font-mono">{selectedProductDetails.price}</span>
                       </div>
                       <button
@@ -1649,14 +1638,14 @@ export default function App() {
                           setSelectedProductDetails(null);
                           setContactForm((f) => ({
                             ...f,
-                            subject: `${t("products.inquirySubjectPrefix")} ${localizedProductName(selectedProductDetails)}`,
-                            message: t("products.inquiryMessage")
+                            subject: `Order inquiry: ${selectedProductDetails.name}`,
+                            message: `Asslema Biotech Agro team, I would like to purchase the "${selectedProductDetails.name}". Please advise of lead times and bulk delivery details.`
                           }));
                           setActivePage("contact");
                         }}
                         className="px-5 py-2.5 bg-emerald-900 hover:bg-emerald-800 text-white rounded-xl text-xs font-semibold tracking-wide transition-all shadow-xs cursor-pointer"
                       >
-                        {t("products.purchaseInquiry")}
+                        Send Purchase Inquiry
                       </button>
                     </div>
                   </div>
@@ -1676,10 +1665,10 @@ export default function App() {
             {/* Header */}
             <div className="text-center max-w-2xl mx-auto space-y-2">
               <h1 className="font-display text-4xl font-bold text-stone-900">
-                {t("contact.title")}
+                Contact Our Laboratory
               </h1>
               <p className="text-sm text-stone-500 font-light font-sans">
-                {t("contact.subtitle")}
+                Submit bulk grain spawn questions, custom molded biocomposite requests, or schedule a physical visit to our cleanroom workspace.
               </p>
             </div>
 
@@ -1688,8 +1677,8 @@ export default function App() {
               {/* Message submit form */}
               <div className="bg-white border border-stone-200/80 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
                 <div>
-                  <h3 className="font-display font-bold text-xl text-stone-900 mb-1">{t("contact.formTitle")}</h3>
-                  <p className="text-xs text-stone-400">{t("contact.formSubtitle")}</p>
+                  <h3 className="font-display font-bold text-xl text-stone-900 mb-1">Send a Message</h3>
+                  <p className="text-xs text-stone-400">Our lab managers generally respond within 24 working hours.</p>
                 </div>
 
                 {messageSuccess ? (
@@ -1698,14 +1687,14 @@ export default function App() {
                       <Check className="w-8 h-8 animate-bounce" />
                     </div>
                     <div className="space-y-1">
-                      <h4 className="font-display font-medium text-lg text-emerald-950">{t("contact.successTitle")}</h4>
-                      <p className="text-xs text-emerald-800 font-light">{t("contact.successText")}</p>
+                      <h4 className="font-display font-medium text-lg text-emerald-950">Message Sent Successfully!</h4>
+                      <p className="text-xs text-emerald-800 font-light">Y'atik saha, your contact request has reached our lab operators. We will verify your query and follow up.</p>
                     </div>
                     <button
                       onClick={() => setMessageSuccess(false)}
                       className="px-4 py-2 bg-emerald-800 hover:bg-emerald-700 text-white text-xs font-semibold rounded-lg tracking-wide cursor-pointer"
                     >
-                      {t("contact.sendAnother")}
+                      Send another message
                     </button>
                   </div>
                 ) : (
@@ -1720,64 +1709,64 @@ export default function App() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-1">
-                        <label className="text-xs font-medium text-stone-700 block">{t("contact.name")}</label>
+                        <label className="text-xs font-medium text-stone-700 block">Your Name *</label>
                         <input
                           type="text"
                           required
                           value={contactForm.senderName}
                           onChange={(e) => setContactForm({ ...contactForm, senderName: e.target.value })}
                           className="w-full bg-[#fcfcf9] border border-stone-200 rounded-xl px-3.5 py-2 text-sm text-stone-900 placeholder-stone-400 focus:outline-hidden focus:border-emerald-700 transition-all font-light"
-                          placeholder={t("contact.namePlaceholder")}
+                          placeholder="e.g. Mehdi Saïd"
                         />
                       </div>
 
                       <div className="space-y-1">
-                        <label className="text-xs font-medium text-stone-700 block">{t("contact.email")}</label>
+                        <label className="text-xs font-medium text-stone-700 block">Your Email Address *</label>
                         <input
                           type="email"
                           required
                           value={contactForm.senderEmail}
                           onChange={(e) => setContactForm({ ...contactForm, senderEmail: e.target.value })}
                           className="w-full bg-[#fcfcf9] border border-stone-200 rounded-xl px-3.5 py-2 text-sm text-stone-900 placeholder-stone-400 focus:outline-hidden focus:border-emerald-700 transition-all font-light"
-                          placeholder={t("contact.emailPlaceholder")}
+                          placeholder="mehdi@example.tn"
                         />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-1">
-                        <label className="text-xs font-medium text-stone-700 block">{t("contact.phone")}</label>
+                        <label className="text-xs font-medium text-stone-700 block">Phone Number (Optional)</label>
                         <input
                           type="text"
                           value={contactForm.senderPhone}
                           onChange={(e) => setContactForm({ ...contactForm, senderPhone: e.target.value })}
                           className="w-full bg-[#fcfcf9] border border-stone-200 rounded-xl px-3.5 py-2 text-sm text-stone-900 placeholder-stone-400 focus:outline-hidden focus:border-emerald-700 transition-all font-light"
-                          placeholder={t("contact.phonePlaceholder")}
+                          placeholder="e.g. +216 98 123 456"
                         />
                       </div>
 
                       <div className="space-y-1">
-                        <label className="text-xs font-medium text-stone-700 block">{t("contact.subject")}</label>
+                        <label className="text-xs font-medium text-stone-700 block">Subject *</label>
                         <input
                           type="text"
                           required
                           value={contactForm.subject}
                           onChange={(e) => setContactForm({ ...contactForm, subject: e.target.value })}
                           className="w-full bg-[#fcfcf9] border border-stone-200 rounded-xl px-3.5 py-2 text-sm text-stone-900 placeholder-stone-400 focus:outline-hidden focus:border-emerald-700 transition-all font-light"
-                          placeholder={t("contact.subjectPlaceholder")}
+                          placeholder="Inquiry or order request"
                         />
                       </div>
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-xs font-medium text-stone-700 block">{t("contact.message")}</label>
+                      <label className="text-xs font-medium text-stone-700 block">Your Message Details *</label>
                       <textarea
                         required
                         rows={4}
                         value={contactForm.message}
                         onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
                         className="w-full bg-[#fcfcf9] border border-stone-200 rounded-xl px-3.5 py-2 text-sm text-stone-900 placeholder-stone-400 focus:outline-hidden focus:border-emerald-700 transition-all font-light"
-                        placeholder={t("contact.messagePlaceholder")}
+                        placeholder="Please write details about substrate volumes, mushroom varieties, or your design requirements..."
                       />
                     </div>
 
@@ -1789,10 +1778,10 @@ export default function App() {
                       {isSendingMessage ? (
                         <>
                           <Loader2 className="w-4 h-4 animate-spin" />
-                          {t("contact.submitting")}
+                          Submitting message request...
                         </>
                       ) : (
-                        t("contact.submit")
+                        "Send Inquiry Message"
                       )}
                     </button>
                   </form>
@@ -1802,18 +1791,18 @@ export default function App() {
               {/* Lab Coordinates and Interactive Map */}
               <div className="space-y-6 flex flex-col justify-between">
                 <div className="bg-stone-900 text-stone-300 rounded-3xl p-6 sm:p-8 space-y-4 border border-stone-800">
-                  <h3 className="font-display font-semibold text-lg text-white">{t("contact.centerTitle")}</h3>
+                  <h3 className="font-display font-semibold text-lg text-white">Tunisian Laboratory Center</h3>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-light space-y-2 sm:space-y-0">
                     <div className="space-y-1">
-                      <span className="text-stone-500 font-mono uppercase block text-[10px]">{t("contact.officeAddress")}</span>
+                      <span className="text-stone-500 font-mono uppercase block text-[10px]">Office Address</span>
                       <p className="text-stone-200 leading-relaxed">
                         {siteContent.contactDetails.address}
                       </p>
                     </div>
 
                     <div className="space-y-1">
-                      <span className="text-stone-500 font-mono uppercase block text-[10px]">{t("contact.hotlines")}</span>
+                      <span className="text-stone-500 font-mono uppercase block text-[10px]">Client Hotlines</span>
                       <p className="text-stone-200 font-mono">
                         {siteContent.contactDetails.phone}
                       </p>
@@ -1825,7 +1814,7 @@ export default function App() {
 
                   <div className="pt-3 border-t border-stone-800 flex items-center gap-2 text-xs">
                     <Clock className="w-4 h-4 text-emerald-400 shrink-0" />
-                    <span>{t("contact.officeHours")}: {siteContent.contactDetails.workingHours}</span>
+                    <span>Office Hours: {siteContent.contactDetails.workingHours}</span>
                   </div>
                 </div>
 
@@ -1838,7 +1827,7 @@ export default function App() {
                     style={{ border: 0 }}
                     allowFullScreen={false}
                     loading="lazy"
-                    title={t("contact.mapTitle")}
+                    title="Biotech Agro Location Map"
                     referrerPolicy="no-referrer"
                     className="absolute inset-0"
                   />
@@ -2411,7 +2400,7 @@ export default function App() {
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div className="space-y-1">
-                            <label className="text-xs font-semibold text-stone-700 block">{t("about.missionTitle")}</label>
+                            <label className="text-xs font-semibold text-stone-700 block">Our Strategic Mission</label>
                             <textarea
                               rows={3}
                               onFocus={() => setActiveTextareaFocus("about_mission")}
@@ -2423,7 +2412,7 @@ export default function App() {
                             />
                           </div>
                           <div className="space-y-1">
-                            <label className="text-xs font-semibold text-stone-700 block">{t("about.visionTitle")}</label>
+                            <label className="text-xs font-semibold text-stone-700 block">Our Future Vision</label>
                             <textarea
                               rows={3}
                               onFocus={() => setActiveTextareaFocus("about_vision")}
@@ -2899,9 +2888,9 @@ export default function App() {
                         {services.map((serv) => (
                           <div key={serv.id} className="p-3 bg-stone-50 border border-stone-200 rounded-xl flex items-center justify-between gap-4">
                             <div className="flex items-center gap-3">
-                              <img src={serv.image} alt={localizedServiceName(serv)} referrerPolicy="no-referrer" className="w-10 h-10 object-cover rounded-md bg-stone-200 shrink-0" />
+                              <img src={serv.image} alt={serv.name} referrerPolicy="no-referrer" className="w-10 h-10 object-cover rounded-md bg-stone-200 shrink-0" />
                               <div>
-                                <h4 className="font-semibold text-xs text-stone-900">{localizedServiceName(serv)}</h4>
+                                <h4 className="font-semibold text-xs text-stone-900">{serv.name}</h4>
                                 <span className="text-[10px] text-stone-400 font-mono italic">{serv.duration} | {serv.price}</span>
                               </div>
                             </div>
