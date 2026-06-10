@@ -36,7 +36,7 @@ export default function Footer({ onNavigate, contactEmail, contactPhone, contact
               </span>
             </div>
             <p className="text-sm text-stone-400 leading-relaxed font-light">
-              Bridging modern bio-technology and regional Tunisian agriculture. We produce heavy-fruiting mycelium on grain and eco-composites using agricultural co-products.
+              {t("footer.mission")}
             </p>
             <div className="text-xs text-stone-500 font-mono">
               Laboratory ID: Under-Construction
