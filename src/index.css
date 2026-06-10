@@ -195,3 +195,19 @@ html, body {
   opacity: 0.3;
 }
 
+
+/* Multilingual support */
+html[dir="rtl"] body {
+  direction: rtl;
+}
+
+html[dir="rtl"] .ltr-text {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+html[dir="rtl"] input,
+html[dir="rtl"] textarea,
+html[dir="rtl"] select {
+  text-align: start;
+}
