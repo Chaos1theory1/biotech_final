@@ -80,7 +80,7 @@ export default function Footer({ onNavigate, contactEmail, contactPhone, contact
             <ul className="space-y-2.5 text-xs text-stone-400 font-mono">
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full" />
-                <span>Tunis: Corporate & Cleanrooms</span>
+                <span>{t("footer.tunis")}Tunis: Corporate & Cleanrooms</span>
               </li>
               {/* Comment until we add other locations 
               <li className="flex items-center gap-2">
