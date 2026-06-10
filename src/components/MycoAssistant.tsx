@@ -74,7 +74,7 @@ export default function MycoAssistant({ authToken, onResultAccepted }: MycoAssis
           <Sparkles className="w-5 h-5 animate-pulse" />
         </div>
         <div>
-          <h3 className="font-display font-medium text-lg text-white">Myco AI Copy Assistant</h3>
+          <h3 className="font-display font-medium text-lg text-white">Biotech Agro Assistant</h3>
           <p className="text-xs text-stone-300">Produce instant bio-tech specifications and localized copy powered by Gemini 2.5 Flash</p>
         </div>
       </div>
