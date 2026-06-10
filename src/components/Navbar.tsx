@@ -13,10 +13,10 @@ export default function Navbar({ activePage, onNavigate, isAdminLoggedIn, onLogo
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { id: "home", label: "Home" },
-    { id: "about", label: "About" },
-    { id: "products", label: "Products & Services" },
-    { id: "contact", label: "Contact Us" },
+    { id: "home", label: t("nav.home") },
+    { id: "about", label: t("nav.about") },
+    { id: "products", label: t("nav.products") },
+    { id: "contact", label: t("nav.contact") }
   ];
 
   const handleNavClick = (pageId: string) => {
