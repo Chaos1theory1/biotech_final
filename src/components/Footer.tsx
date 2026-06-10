@@ -1,6 +1,5 @@
 import React from "react";
 import { Sprout, Mail, Phone, MapPin, Globe } from "lucide-react";
-import { useLanguage } from "../i18n/LanguageContext";
 
 interface FooterProps {
   onNavigate: (page: string) => void;
@@ -12,7 +11,6 @@ interface FooterProps {
 
 export default function Footer({ onNavigate, contactEmail, contactPhone, contactAddress, logoUrl }: FooterProps) {
   const currentYear = new Date().getFullYear();
-  const { t } = useLanguage();
 
   return (
     <footer className="bg-stone-900 text-stone-300 border-t border-stone-800">
@@ -36,7 +34,7 @@ export default function Footer({ onNavigate, contactEmail, contactPhone, contact
               </span>
             </div>
             <p className="text-sm text-stone-400 leading-relaxed font-light">
-              {t("footer.mission")}
+              Bridging modern bio-technology and regional Tunisian agriculture. We produce heavy-fruiting mycelium on grain and eco-composites using agricultural co-products.
             </p>
             <div className="text-xs text-stone-500 font-mono">
               Laboratory ID: Under-Construction
@@ -80,7 +78,7 @@ export default function Footer({ onNavigate, contactEmail, contactPhone, contact
             <ul className="space-y-2.5 text-xs text-stone-400 font-mono">
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full" />
-                <span>{t("footer.tunis")}Tunis: Corporate & Cleanrooms</span>
+                <span>Tunis: Corporate & Cleanrooms</span>
               </li>
               {/* Comment until we add other locations 
               <li className="flex items-center gap-2">
@@ -103,7 +101,6 @@ export default function Footer({ onNavigate, contactEmail, contactPhone, contact
           <div className="space-y-4">
             <h4 className="text-sm font-semibold text-stone-100 uppercase tracking-wider font-display">
               Office Contacts
-              {t("footer.contacts")}
             </h4>
             <ul className="space-y-3.5 text-sm text-stone-400">
               <li className="flex items-start gap-2.5">
@@ -130,7 +127,7 @@ export default function Footer({ onNavigate, contactEmail, contactPhone, contact
         </div>
 
         <div className="pt-8 mt-8 border-t border-stone-800 text-center flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-stone-500">
-          <p>© {currentYear} Biotech Agro. All Rights Reserved.{t("footer.rights")}</p>
+          <p>© {currentYear} Tunisian Mycelium Biotech. Registered under Tunisian Startup Act. All Rights Reserved.</p>
           <div className="flex gap-4">
             <span className="hover:text-stone-400 cursor-pointer">Privacy Charter</span>
             <span className="hover:text-stone-400 cursor-pointer">Technical Spec</span>
