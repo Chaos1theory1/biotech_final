@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { Sprout, Lock, Unlock, Menu, X, Settings } from "lucide-react";
-import LanguageSwitcher from "./LanguageSwitcher";
-import { useLanguage } from "../i18n/LanguageContext";
 
 interface NavbarProps {
   activePage: string;
@@ -15,10 +13,10 @@ export default function Navbar({ activePage, onNavigate, isAdminLoggedIn, onLogo
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { id: "home", label: t("nav.home") },
-    { id: "about", label: t("nav.about") },
-    { id: "products", label: t("nav.products") },
-    { id: "contact", label: t("nav.contact") }
+    { id: "home", label: "Home" },
+    { id: "about", label: "About" },
+    { id: "products", label: "Products & Services" },
+    { id: "contact", label: "Contact Us" },
   ];
 
   const handleNavClick = (pageId: string) => {
@@ -72,8 +70,7 @@ export default function Navbar({ activePage, onNavigate, isAdminLoggedIn, onLogo
             })}
 
             <div className="h-4 w-px bg-stone-300" />
-            <LanguageSwitcher />
-            
+
             {/* Admin Dashboard Area */}
             {isAdminLoggedIn ? (
               <div className="flex items-center gap-3">
@@ -113,7 +110,6 @@ export default function Navbar({ activePage, onNavigate, isAdminLoggedIn, onLogo
 
           {/* Mobile menu trigger */}
           <div className="flex items-center md:hidden gap-2">
-            <LanguageSwitcher />
             {isAdminLoggedIn && (
               <span className="px-2 py-1 bg-emerald-100 text-emerald-800 text-[10px] font-mono font-bold rounded-lg uppercase">
                 Admin
