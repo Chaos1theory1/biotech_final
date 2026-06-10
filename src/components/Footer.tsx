@@ -1,5 +1,6 @@
 import React from "react";
 import { Sprout, Mail, Phone, MapPin, Globe } from "lucide-react";
+import { useLanguage } from "../i18n/LanguageContext";
 
 interface FooterProps {
   onNavigate: (page: string) => void;
@@ -11,6 +12,7 @@ interface FooterProps {
 
 export default function Footer({ onNavigate, contactEmail, contactPhone, contactAddress, logoUrl }: FooterProps) {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
 
   return (
     <footer className="bg-stone-900 text-stone-300 border-t border-stone-800">
@@ -101,6 +103,7 @@ export default function Footer({ onNavigate, contactEmail, contactPhone, contact
           <div className="space-y-4">
             <h4 className="text-sm font-semibold text-stone-100 uppercase tracking-wider font-display">
               Office Contacts
+              {t("footer.contacts")}
             </h4>
             <ul className="space-y-3.5 text-sm text-stone-400">
               <li className="flex items-start gap-2.5">
@@ -127,7 +130,7 @@ export default function Footer({ onNavigate, contactEmail, contactPhone, contact
         </div>
 
         <div className="pt-8 mt-8 border-t border-stone-800 text-center flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-stone-500">
-          <p>© {currentYear} Tunisian Mycelium Biotech. Registered under Tunisian Startup Act. All Rights Reserved.</p>
+          <p>© {currentYear} Biotech Agro. All Rights Reserved.{t("footer.rights")}</p>
           <div className="flex gap-4">
             <span className="hover:text-stone-400 cursor-pointer">Privacy Charter</span>
             <span className="hover:text-stone-400 cursor-pointer">Technical Spec</span>
